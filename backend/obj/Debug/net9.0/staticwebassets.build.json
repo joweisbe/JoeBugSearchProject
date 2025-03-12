@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "/zqa2MW5+FqQ02CEAckY29I2kUcegQ2fmH9wBoKy0Hg=",
+  "Source": "BugSearchBackend",
+  "BasePath": "_content/BugSearchBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
