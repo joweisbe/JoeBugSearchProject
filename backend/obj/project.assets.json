@@ -792,24 +792,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\t-matasert\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\joweisbe\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\t-matasert\\source\\repos\\BugSearchProject\\backend\\BugSearchBackend.csproj",
+      "projectUniqueName": "C:\\Users\\joweisbe\\git\\JoeBugSearchProject\\backend\\BugSearchBackend.csproj",
       "projectName": "BugSearchBackend",
-      "projectPath": "C:\\Users\\t-matasert\\source\\repos\\BugSearchProject\\backend\\BugSearchBackend.csproj",
-      "packagesPath": "C:\\Users\\t-matasert\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\t-matasert\\source\\repos\\BugSearchProject\\backend\\obj\\",
+      "projectPath": "C:\\Users\\joweisbe\\git\\JoeBugSearchProject\\backend\\BugSearchBackend.csproj",
+      "packagesPath": "C:\\Users\\joweisbe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\joweisbe\\git\\JoeBugSearchProject\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\t-matasert\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\joweisbe\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -869,7 +868,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
