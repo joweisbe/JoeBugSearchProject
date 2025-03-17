@@ -8,7 +8,8 @@
     }
   ],
   "mimeTypes": {
-    ".js": "application/javascript"
+    ".js": "application/javascript",
+    ".jsx": "application/javascript"
   },
   "navigationFallback": {
     "rewrite": "/index.html"
