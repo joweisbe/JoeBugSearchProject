@@ -9,5 +9,8 @@
   ],
   "mimeTypes": {
     ".js": "application/javascript"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html"
   }
 }
