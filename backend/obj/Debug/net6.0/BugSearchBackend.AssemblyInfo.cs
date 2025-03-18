@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BugSearchBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e12d2381c00b7ebbef1c3b8d674a7ce8e162f864")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe6aab6002c590899f73a33028ba66821a092435")]
 [assembly: System.Reflection.AssemblyProductAttribute("BugSearchBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BugSearchBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
