@@ -1,6 +1,6 @@
-import './App.css'
+import './src/App.css'
 
-import SearchBar from './components/SearchBar';
+import SearchBar from './src/components/SearchBar';
 
 function App() {
   return (
