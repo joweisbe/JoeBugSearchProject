@@ -8,10 +8,11 @@
   ],
   "mimeTypes": {
     ".js": "application/javascript",
-    ".jsx": "text/jsx"
+    ".jsx": "application/javascript"
   },
   "globalHeaders": {
     "Cache-Control": "no-store, must-revalidate, no-cache, max-age=0",
+    "Content-Type": "text/jsx",
     "X-Content-Type-Options": "nosniff"
   }
 }
