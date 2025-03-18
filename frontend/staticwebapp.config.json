@@ -2,5 +2,9 @@
   "mimeTypes": {
     ".js": "application/javascript",
     ".jsx": "application/javascript"
+  },
+  "globalHeaders": {
+    "Cache-Control": "no-store, must-revalidate, no-cache, max-age=0",
+    "X-Content-Type-Options": "nosniff"
   }
 }
