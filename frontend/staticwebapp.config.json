@@ -1,0 +1,21 @@
+{
+  "routes": [
+    {
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200,     
+      "headers": {
+        "Content-Type": "text/jsx"     
+      }
+    }
+  ],
+  "mimeTypes": {
+    ".js": "application/javascript",
+    ".jsx": "application/javascript"
+  },
+  "globalHeaders": {
+    "Cache-Control": "no-store, must-revalidate, no-cache, max-age=0",
+    "Content-Type": "text/jsx",
+    "X-Content-Type-Options": "nosniff"
+  }
+}
