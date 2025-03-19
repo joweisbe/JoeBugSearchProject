@@ -1,13 +1,14 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
-//using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Azure;
 using Azure.Identity;
 using Azure.Search.Documents;
 using Azure.Search.Documents.Models;
 using System;
+using System.Net;
+using System.Web;
 
 namespace JoeBugSearchProject.Backend.Search
 {
@@ -20,7 +21,7 @@ namespace JoeBugSearchProject.Backend.Search
         {
             _logger = loggerFactory.CreateLogger<SearchFunction>();
 
-            // Load configuration from environment variables (set in local.settings.json or Azure App Settings)
+            // Load configuration from environment variables (set in local.settings.json or Azure Portal -> Configuration)
             string serviceEndpoint = Environment.GetEnvironmentVariable("AzureSearchServiceEndpoint");
             string indexName = Environment.GetEnvironmentVariable("AzureIndexName");
 
@@ -30,30 +31,43 @@ namespace JoeBugSearchProject.Backend.Search
 
         [Function("SearchFunction")]
         public async Task<HttpResponseData> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "search")] HttpRequestData req)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "search")] HttpRequestData req)
         {
-            _logger.LogInformation("C# HTTP trigger function processed a search request.");
+            _logger.LogInformation("C# HTTP trigger function processed a request to the search endpoint.");
 
-            // Retrieve the query string. Assumes the query parameter is passed in the URL, e.g., ?query=...
-            // You can further parse it if needed.
-            var queryParams = System.Web.HttpUtility.ParseQueryString(req.Url.Query);
+            // Retrieve the query string (e.g. ?query=bugs)
+            var queryParams = HttpUtility.ParseQueryString(req.Url.Query);
             var searchQuery = queryParams["query"] ?? string.Empty;
 
-            // Execute search using the SearchClient
-            var resultsResponse = await _client.SearchAsync<SearchDocument>(searchQuery);
-            var searchResults = resultsResponse.Value.GetResults();
-
-            var resultObject = new
+            // We'll wrap the actual search call in a try-catch to handle any unexpected errors.
+            try
             {
-                TotalCount = resultsResponse.Value.TotalCount,
-                Results = searchResults
-            };
+                var resultsResponse = await _client.SearchAsync<SearchDocument>(searchQuery);
+                var searchResults = resultsResponse.Value.GetResults();
 
-            // Create the JSON response.
-            var response = req.CreateResponse(System.Net.HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "application/json");
-            await response.WriteAsJsonAsync(resultObject);
-            return response;
+                // Example output structure:
+                var resultObject = new
+                {
+                    TotalCount = resultsResponse.Value.TotalCount,
+                    Results = searchResults
+                };
+
+                // Build the response
+                var response = req.CreateResponse(HttpStatusCode.OK);
+                response.Headers.Add("Content-Type", "application/json");
+                await response.WriteAsJsonAsync(resultObject);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                _logger.LogError(ex, "Search operation failed.");
+
+                // Return a generic 500 Internal Server Error response
+                var errorResponse = req.CreateResponse(HttpStatusCode.InternalServerError);
+                errorResponse.WriteString("An error occurred while processing your search request.");
+                return errorResponse;
+            }
         }
     }
 }
