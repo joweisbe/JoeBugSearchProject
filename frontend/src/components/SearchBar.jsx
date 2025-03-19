@@ -12,7 +12,7 @@ function SearchBar() {
   // handleSearch sends a GET request to the backend and updates 'results'.
   const handleSearch = async () => {
     // The query is appended to the URL as a query parameter.
-    const response = await axios.get(`http://localhost:5000/search?query=${query}`);
+    const response = await axios.get(`/api/search?query=${query}`);
     // Update the 'results' array with the data from the backend.
     setResults(response.data);
   };
