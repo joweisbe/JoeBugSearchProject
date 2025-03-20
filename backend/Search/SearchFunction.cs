@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using System.Linq;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -39,33 +40,38 @@ namespace JoeBugSearchProject.Backend.Search
             var queryParams = HttpUtility.ParseQueryString(req.Url.Query);
             var searchQuery = queryParams["query"] ?? string.Empty;
 
-            // We'll wrap the actual search call in a try-catch to handle any unexpected errors.
             try
             {
-                var resultsResponse = await _client.SearchAsync<SearchDocument>(searchQuery);
-                var searchResults = resultsResponse.Value.GetResults();
+                // Limit results to 3 by using SearchOptions with Size = 3.
+                var options = new SearchOptions { Size = 3 };
 
-                // Example output structure:
+                var resultsResponse = await _client.SearchAsync<SearchDocument>(searchQuery, options);
+                var simplifiedResults = resultsResponse.Value.GetResults()
+                    .Select(r => new
+                    {
+                        BugID = r.Document.ContainsKey("BugID") ? r.Document["BugID"] : null,
+                        SubmissionID = r.Document.ContainsKey("SubmissionID") ? r.Document["SubmissionID"] : null,
+                        RequirementNoFull = r.Document.ContainsKey("RequirementNoFull") ? r.Document["RequirementNoFull"] : null,
+                        BugType = r.Document.ContainsKey("BugType") ? r.Document["BugType"] : null
+                    })
+                    .Take(3);
+
                 var resultObject = new
                 {
                     TotalCount = resultsResponse.Value.TotalCount,
-                    Results = searchResults
+                    Results = simplifiedResults
                 };
 
-                // Build the response
                 var response = req.CreateResponse(HttpStatusCode.OK);
-                response.Headers.Add("Content-Type", "application/json");
                 await response.WriteAsJsonAsync(resultObject);
                 return response;
             }
             catch (Exception ex)
             {
-                // Log the exception
                 _logger.LogError(ex, "Search operation failed.");
 
-                // Return a generic 500 Internal Server Error response
                 var errorResponse = req.CreateResponse(HttpStatusCode.InternalServerError);
-                errorResponse.WriteString("An error occurred while processing your search request.");
+                await errorResponse.WriteStringAsync("Search operation failed.");
                 return errorResponse;
             }
         }
