@@ -25,8 +25,14 @@ namespace JoeBugSearchProject.Backend.Search
             // Load configuration from environment variables (set in local.settings.json or Azure Portal -> Configuration)
             string serviceEndpoint = Environment.GetEnvironmentVariable("AzureSearchServiceEndpoint");
             string indexName = Environment.GetEnvironmentVariable("AzureIndexName");
+            string userAssignedClientId = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID");
 
-            var credential = new DefaultAzureCredential();
+            var credential = new DefaultAzureCredential(
+                new DefaultAzureCredentialOptions
+                {
+                    ManagedIdentityClientId = userAssignedClientId
+                });
+            
             _client = new SearchClient(new Uri(serviceEndpoint), indexName, credential);
         }
 
