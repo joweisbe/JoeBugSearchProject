@@ -1,14 +1,20 @@
 {
   "routes": [
     {
+      "route": "/api/*",
+      "methods": ["GET", "POST"],
+      "rewrite": "/api/{restOfPath}"
+    },
+    {
       "route": "/*",
       "serve": "/index.html",
-      "statusCode": 200,     
-      "headers": {
-        "Content-Type": "text/jsx"     
-      }
+      "statusCode": 200
     }
   ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/api/*"]
+  },
   "mimeTypes": {
     ".js": "application/javascript",
     ".jsx": "application/javascript"
@@ -19,3 +25,5 @@
     "X-Content-Type-Options": "nosniff"
   }
 }
+
+
