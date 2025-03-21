@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 
-
+# Backend build artifacts
 /backend/bin/
 /backend/obj/
 
