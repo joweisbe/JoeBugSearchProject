@@ -1,9 +1,9 @@
 {
   "routes": [
     {
-      "route": "/api/*",
+      "route": "/api/search",
       "methods": ["GET", "POST"],
-      "rewrite": "/api/{restOfPath}"
+      "rewrite": "/api/SearchFunction"
     },
     {
       "route": "/*",
@@ -15,6 +15,9 @@
     "rewrite": "/index.html",
     "exclude": ["/api/*"]
   },
+  "platform": {
+    "apiRuntime": "dotnet:6.0"
+  },
   "mimeTypes": {
     ".js": "application/javascript",
     ".jsx": "application/javascript"
@@ -25,5 +28,6 @@
     "X-Content-Type-Options": "nosniff"
   }
 }
+
 
 
