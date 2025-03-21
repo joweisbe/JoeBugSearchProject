@@ -1,7 +1,7 @@
 {
   "routes": [
     {
-      "route": "/api/search",
+      "route": "/api/SearchFunction",
       "methods": ["GET", "POST"],
       "rewrite": "/api/SearchFunction"
     },

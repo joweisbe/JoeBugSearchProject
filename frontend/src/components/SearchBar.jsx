@@ -24,7 +24,7 @@ function SearchBar() {
     
     try {
       // Log the API endpoint and query for debugging purposes
-      console.log('Sending request to:', `/api/search?query=${encodeURIComponent(query)}`);
+      console.log('Sending request to:', `/api/SearchFunction?query=${encodeURIComponent(query)}`);
       
       // Make a GET request to the backend search API with the query
       // The request URL is built using the query value (safely encoded)
