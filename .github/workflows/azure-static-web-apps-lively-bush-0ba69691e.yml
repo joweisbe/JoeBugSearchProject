@@ -32,8 +32,6 @@ jobs:
           api_location: "backend" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-          # Tell SWA how to build your C# project:
-          api_build_command: "dotnet publish --configuration Release"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
