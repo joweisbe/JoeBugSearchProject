@@ -2,7 +2,10 @@
   "routes": [
     {
       "route": "/api/SearchFunction",
-      "methods": ["GET", "POST"],
+      "methods": [
+        "get",
+        "post"
+      ],
       "rewrite": "/api/SearchFunction"
     },
     {
@@ -13,7 +16,9 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/api/*"]
+    "exclude": [
+      "/api/*"
+    ]
   },
   "platform": {
     "apiRuntime": "dotnet:6.0"
@@ -28,6 +33,3 @@
     "X-Content-Type-Options": "nosniff"
   }
 }
-
-
-
