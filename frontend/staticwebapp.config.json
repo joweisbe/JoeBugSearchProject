@@ -6,7 +6,7 @@
         "get",
         "post"
       ],
-      "rewrite": "SearchFunction"
+      "rewrite": "/api/SearchFunction"
     },
     {
       "route": "/*",
