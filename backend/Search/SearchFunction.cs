@@ -37,8 +37,8 @@ namespace JoeBugSearchProject.Backend.Search
         }
 
         [Function("SearchFunction")]
-        public async Task<HttpResponseData> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "SearchFunction")] HttpRequestData req)
+        public async Task<HttpResponseData> RunAsync(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "SearchFunction")] HttpRequestData req, FunctionContext executionContext)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request to the search endpoint.");
 
