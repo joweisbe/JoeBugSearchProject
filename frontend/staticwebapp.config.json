@@ -21,7 +21,10 @@
     ]
   },
   "platform": {
-    "apiRuntime": "dotnet:6.0"
+    "apiRuntime": "dotnet:6.0",    
+    "azureFunctions": {
+      "deploySubpath": "backend"
+    }
   },
   "mimeTypes": {
     ".js": "application/javascript",
